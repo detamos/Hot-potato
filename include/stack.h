@@ -4,83 +4,84 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node
+struct node
 {
 	int data;
 	struct node *next;
+};
+
+typedef struct list
+{
+	struct node *top;
+	int size;
 }stack;
 
-stack *push(stack *top,int data)
+stack init(stack s)
 {
-	stack *temp = NULL;
-	temp = (stack*) malloc(sizeof(stack));
+	s.size = 0;
+	s.top = NULL;
+	return s;
+}
+
+stack push(stack s,int data)
+{
+	struct node *temp = NULL;
+	temp = (struct node *) malloc(sizeof(struct node));
 	temp->data = data;
-	if(top != NULL)
-		temp->next = top;
-	top = temp;
-	return top;
+
+	if(s.top != NULL)
+		temp->next = s.top;
+	s.top = temp;
+	return s;
 }
 
-stack *pop(stack *top)
+int pop(stack *s)
 {
-	if(top == NULL)
-		return top;
-	stack *temp = NULL;
-	temp = top->next;
-	free(top);
-	top = temp;
-	return top;
+	if((*s).top == NULL)
+		return INT_MIN;
+	int data;
+	struct node *temp = NULL;
+
+	temp = (*s).top->next;
+	data = (*s).top->data;
+	free((*s).top);
+	(*s).top = temp;
+
+	return data;
 }
 
-int size(stack *top)
+void print(stack s)
 {
-	if(top == NULL)
-		return 0;
-	int count = 0;
-	stack *temp = NULL;
-	temp = top;
-	do
-		count++;
-	while((temp = (temp->next)));
-	return count;
-}
+	struct node *temp = NULL;
+	temp = s.top;
 
-void print(stack *top)
-{
-	if(top == NULL)
+	if(temp == NULL)
+	{
+		printf("Stack is empty\n");
 		return;
-	stack *temp = NULL;
-	temp = top;
+	}	
+
 	do
 		printf("%d ",temp->data);
-	while((temp = (temp->next)));
+	while((temp = (temp->next));
 }
 
-int empty(stack *top)
+void flush(stack *s)
 {
-	if(top == NULL)
-		return 1;
-	else
-		return 0;
-}
+	struct node *temp = NULL;
+	temp = (*s).top;
 
-int top(stack *top)
-{
-	return (top->data);
-}
-
-stack *flush(stack *top)
-{
-	stack *temp = NULL;
-	temp = top;
-	while(temp != NULL)
+	while(temp!=NULL)
 	{
-		temp = top->next;
+		temp = (*s).top->next;
 		free(top);
 		top = temp;
 	}
+
 	free(temp);
-	top = NULL;
-	return top;
+	(*s).top = NULL;
+
+	return s;
 }
+
 #endif

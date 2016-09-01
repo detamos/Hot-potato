@@ -78,24 +78,24 @@ int dequeue(queue *q)
 	return data;
 }
 
-void print(queue *q)
+void print(queue q)
 {
 	struct node *temp = NULL;
-	temp = (*q).front;
+	temp = (q).front;
 
-	if(temp	== NULL && (*q).rear == NULL)
+	if(temp	== NULL && (q).rear == NULL)
 	{
 		printf("Queue is empty\n");
 		return ;
 	}
 
-	while(temp != (*q).rear)
+	while(temp != (q).rear)
 	{
 		printf("%d ",temp->data);
 		temp = temp->next;
 	}
 
-	if(temp == (*q).rear)
+	if(temp == (q).rear)
 		printf("%d ",temp->data);
 
 	printf("\n");
@@ -112,7 +112,7 @@ void flush(queue *q)
 		free((*q).front);
 		(*q).front = temp;
 	}
-	
+
 	free(temp);
 	(*q).front = (*q).rear = NULL;
 }
