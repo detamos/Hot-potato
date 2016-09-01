@@ -26,8 +26,10 @@ Input Data and Format
 Sample Output :
 
 The removal sequence is as follows -
+
 [1] Firstly, the person at position 2 is removed.
 [2] Then person at position 4 is removed.
 [3] Then person at position 1 is removed.
 [4] Finally, the person at position 5 is removed.
+
 Hence the person at position 3 survives. (WINNER)
