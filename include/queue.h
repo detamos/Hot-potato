@@ -24,31 +24,31 @@ queue init(queue q)
 	return q;
 }
 
-void enqueue(queue *q,int data)
+queue enqueue(queue q,int data)
 {
 	struct node *temp = NULL;
-	if((*q).front == NULL && (*q).rear == NULL)
+	if((q).front == NULL && (q).rear == NULL)
 	{
 		temp = (struct node *) malloc(sizeof(struct node));
 		
 		temp->next = NULL;
 		temp->data = data;
 
-		(*q).front = (*q).rear = temp;
-		(*q).size = 1;
+		(q).front = (q).rear = temp;
+		(q).size = 1;
 	}
 	else
 	{
 		temp = (struct node *) malloc(sizeof(struct node));
 
-		(*q).rear->next = temp;
+		(q).rear->next = temp;
 		temp->data = data;
 		temp->next = NULL;
 
-		(*q).rear = temp;
-		(*q).size++;
+		(q).rear = temp;
+		(q).size++;
 	}
-
+	return q;
 }
 
 int dequeue(queue *q)

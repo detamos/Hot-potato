@@ -9,7 +9,7 @@ int Hot_potato(int num,int elim)
 
 	int i,j;
 	for(i=1;i<=num;i++)
-		enqueue(&circle,i);
+		circle = enqueue(circle,i);
 
 	printf("The game starts now :\n\n");
 
@@ -18,7 +18,7 @@ int Hot_potato(int num,int elim)
 		for(j=0;j<elim-1;j++)
 		{
 			temp = dequeue(&circle);
-			enqueue(&circle,temp);
+			circle = enqueue(circle,temp);
 		}
 		temp = dequeue(&circle);
 		if(ctr == 0)
