@@ -1,28 +1,22 @@
+
 CC = gcc
-CFLAGS = -c -g 
-WFLAGS = -Wall -Werror -Wextra
+CFLAGS = -std=gnu99 -Wall -Wextra -g 
 
 RM = rm
 RMFLAGS = -f
 
-LIBS = -lm
-
-SRCS = src/main.c
+SRCS = src/main.c src/hot_potato.c include/queue.c
 
 INCLUDES = include/queue.h
 
-OBJS = $(SRCS:.c=.o)
+LIBS = -lm
 
-all: objects hpotato
+OBJS = $(SRCS:.c = .o)
+
+all: HotPotato
 
 clean:
-		$(RM) $(RMFLAGS) hpotato
+		$(RM) $(RMFLAGS) ./bin/*
 
-clean-objects:
-		$(RM) $(RMFLAGS) src/*.o
-
-objects: $(SRCS)
-		$(CC) $(SRCS) -o $(OBJS) $(WFLAGS) $(LIBS)
-
-hpotato: $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) -o hpotato $(WFLAGS) $(LIBS)
+HotPotato: $(OBJS)
+		$(CC) $(CFLAGS) $(INCLUDES) -o ./bin/HotPotato $(OBJS) $(LIBS)
