@@ -103,6 +103,17 @@ void print(queue *q)
 
 void flush(queue *q)
 {
+	struct node *temp = NULL;
+	temp = (*q).front;
+
+	while(temp != (*q).rear)
+	{
+		temp = (*q).front->next;
+		free((*q).front);
+		(*q).front = temp;
+	}
 	
+	free(temp);
+	(*q).front = (*q).rear = NULL;
 }
 #endif
